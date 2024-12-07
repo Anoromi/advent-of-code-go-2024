@@ -9,5 +9,6 @@ func main() {
   // advent5_1()
   // advent5_2()
   // advent6_1()
-  advent6_2()
+  // advent6_2()
+  advent7_1()
 }
