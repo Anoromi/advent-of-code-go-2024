@@ -23,7 +23,7 @@ func advent3_2() {
 	sum := 0
 	do := true
 	for {
-		found, result, err := advance(reader)
+		found, result, err := tryParseMul(reader)
 
 		if err == io.EOF {
 			break
@@ -54,7 +54,7 @@ const (
 	Dodont     = 1
 )
 
-func advance(reader *bufio.Reader) (int, int, error) {
+func tryParseMul(reader *bufio.Reader) (int, int, error) {
 	char, _, err := reader.ReadRune()
 	if char == 'm' {
 		success, value, err := mul(reader)
