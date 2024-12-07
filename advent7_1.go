@@ -71,7 +71,6 @@ func canCalculate(value int64, current int64, left []int) bool {
 }
 
 func concatenate(a, b int64) int64 {
-	// var factor int64 = 0
   result := a
 	{
 		temp := b
@@ -84,9 +83,6 @@ func concatenate(a, b int64) int64 {
 			}
 		}
 	}
-  // fmt.Printf("a: %v\n", a)
-  // fmt.Printf("b: %v\n", b)
-  // fmt.Printf("factor: %v\n", factor)
 
 	return result + b
 
