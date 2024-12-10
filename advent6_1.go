@@ -7,7 +7,7 @@ import (
 	"os"
 )
 
-type Vector struct {
+type Point struct {
 	x int
 	y int
 }
@@ -24,8 +24,8 @@ func advent6_1() {
 
 	scanner := bufio.NewScanner(f)
 
-	position := Vector{-1, -1}
-	direction := Vector{-1, -1}
+	position := Point{-1, -1}
+	direction := Point{-1, -1}
 
 	guardMap := make([][]rune, 0)
 
@@ -35,7 +35,7 @@ func advent6_1() {
 		for j, v := range text {
 			isPosition, potentialDirection := interpretDirection(v)
 			if isPosition {
-				position = Vector{j, i}
+				position = Point{j, i}
 				direction = potentialDirection
 			}
 		}
@@ -54,13 +54,13 @@ func advent6_1() {
 
 }
 
-func findTraversedPositions(position Vector, direction Vector, guardMap [][]rune) map[int]bool {
+func findTraversedPositions(position Point, direction Point, guardMap [][]rune) map[int]bool {
 	traversed := make(map[int]bool)
 
 	for {
 		traversed[len(guardMap)*position.y+position.x] = true
 
-		moved := Vector{position.x + direction.x, position.y + direction.y}
+		moved := Point{position.x + direction.x, position.y + direction.y}
 		// fmt.Printf("moved: %v\n", moved)
 		// fmt.Printf("direction: %v\n", direction)
 		if moved.y >= len(guardMap) || moved.y < 0 {
@@ -81,20 +81,20 @@ func findTraversedPositions(position Vector, direction Vector, guardMap [][]rune
   return traversed
 }
 
-func turnRight(v Vector) Vector {
-	return Vector{v.y * -1, v.x}
+func turnRight(v Point) Point {
+	return Point{v.y * -1, v.x}
 }
 
-func interpretDirection(c rune) (bool, Vector) {
+func interpretDirection(c rune) (bool, Point) {
 	switch c {
 	case '<':
-		return true, Vector{-1, 0}
+		return true, Point{-1, 0}
 	case '>':
-		return true, Vector{1, 0}
+		return true, Point{1, 0}
 	case '^':
-		return true, Vector{0, -1}
+		return true, Point{0, -1}
 	case 'v':
-		return true, Vector{0, 1}
+		return true, Point{0, 1}
 	}
-	return false, Vector{}
+	return false, Point{}
 }

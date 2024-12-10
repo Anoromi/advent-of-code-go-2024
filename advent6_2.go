@@ -20,8 +20,8 @@ func advent6_2() {
 
 	scanner := bufio.NewScanner(f)
 
-	position := Vector{-1, -1}
-	direction := Vector{-1, -1}
+	position := Point{-1, -1}
+	direction := Point{-1, -1}
 
 	guardMap := make([][]rune, 0)
 
@@ -31,7 +31,7 @@ func advent6_2() {
 		for j, v := range text {
 			isPosition, potentialDirection := interpretDirection(v)
 			if isPosition {
-				position = Vector{j, i}
+				position = Point{j, i}
 				direction = potentialDirection
 			}
 		}
@@ -61,11 +61,11 @@ func advent6_2() {
 
 }
 
-func hasALoop(position Vector, direction Vector, guardMap [][]rune) bool {
-	hitPost := make(map[int][]Vector)
+func hasALoop(position Point, direction Point, guardMap [][]rune) bool {
+	hitPost := make(map[int][]Point)
 
 	for {
-		moved := Vector{position.x + direction.x, position.y + direction.y}
+		moved := Point{position.x + direction.x, position.y + direction.y}
 		if moved.y >= len(guardMap) || moved.y < 0 {
 			break
 		}
@@ -79,7 +79,7 @@ func hasALoop(position Vector, direction Vector, guardMap [][]rune) bool {
 		}
 		if guardMap[moved.y][moved.x] == '#' {
 			if hitPost[flattenedPosition] == nil {
-				hitPost[flattenedPosition] = make([]Vector, 0)
+				hitPost[flattenedPosition] = make([]Point, 0)
 			}
 			hitPost[flattenedPosition] = append(hitPost[flattenedPosition], direction)
 			direction = turnRight(direction)

@@ -22,7 +22,7 @@ func advent8_2() {
 
 	board := make([][]rune, 0)
 
-	antennas := make(map[rune][]Vector)
+	antennas := make(map[rune][]Point)
 
 	for i := 0; scanner.Scan(); i++ {
 		text := []rune(scanner.Text())
@@ -30,7 +30,7 @@ func advent8_2() {
 		board = append(board, text)
 		for j := range text {
 			if text[j] != '.' {
-				antennas[text[j]] = append(antennas[text[j]], Vector{j, i})
+				antennas[text[j]] = append(antennas[text[j]], Point{j, i})
 			}
 		}
 	}
@@ -57,7 +57,7 @@ func advent8_2() {
 
 }
 
-func fillRay(board [][]rune, antinodePositions map[int]bool, start Vector, direction Vector) {
+func fillRay(board [][]rune, antinodePositions map[int]bool, start Point, direction Point) {
 	position := start
 	for {
 		if position.y >= len(board) || position.y < 0 {
@@ -72,6 +72,6 @@ func fillRay(board [][]rune, antinodePositions map[int]bool, start Vector, direc
 
 }
 
-func (a Vector) invert() Vector {
-	return Vector{-a.x, -a.y}
+func (a Point) invert() Point {
+	return Point{-a.x, -a.y}
 }

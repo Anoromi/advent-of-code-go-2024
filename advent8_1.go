@@ -22,7 +22,7 @@ func advent8_1() {
 
 	board := make([][]rune, 0)
 
-	antennas := make(map[rune][]Vector)
+	antennas := make(map[rune][]Point)
 
 	for i := 0; scanner.Scan(); i++ {
 		text := []rune(scanner.Text())
@@ -30,7 +30,7 @@ func advent8_1() {
 		board = append(board, text)
 		for j := range text {
 			if text[j] != '.' {
-				antennas[text[j]] = append(antennas[text[j]], Vector{j, i})
+				antennas[text[j]] = append(antennas[text[j]], Point{j, i})
 			}
 		}
 	}
@@ -63,14 +63,14 @@ func advent8_1() {
 
 }
 
-func (a Vector) subtract(b Vector) Vector {
-	return Vector{a.x - b.x, a.y - b.y}
+func (a Point) subtract(b Point) Point {
+	return Point{a.x - b.x, a.y - b.y}
 }
-func (a Vector) add(b Vector) Vector {
-	return Vector{b.x + a.x, b.y + a.y}
+func (a Point) add(b Point) Point {
+	return Point{b.x + a.x, b.y + a.y}
 }
 
-func testForAntinode(board [][]rune, previousAntinodes map[int]bool, position Vector) bool {
+func testForAntinode(board [][]rune, previousAntinodes map[int]bool, position Point) bool {
 	if position.y >= len(board) || position.y < 0 {
 		return false
 	}
