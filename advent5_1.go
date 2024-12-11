@@ -169,6 +169,19 @@ func stringSliceToIntSlice(s []string) (result []int, err error) {
 	return r, nil
 }
 
+func stringSliceToInt64Slice(s []string) (result []int64, err error) {
+	r := make([]int64, len(s))
+	for i := 0; i < len(r); i++ {
+		v, err := strconv.ParseInt(s[i], 10, 32)
+		if err != nil {
+			return nil, err
+		}
+		r[i] = v
+	}
+
+	return r, nil
+}
+
 func intesect(a []int, b []int) bool {
 	k := make(map[int]bool)
 	for _, v := range a {

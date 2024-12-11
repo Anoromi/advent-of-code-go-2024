@@ -15,6 +15,8 @@ func main() {
   // advent8_2()
   // advent9_1()
   // advent9_2()
-  advent10_1()
+  // advent10_1()
+  // advent11_1()
+  advent11_2()
   
 }
